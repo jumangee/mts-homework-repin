@@ -1,57 +1,63 @@
 package org.mtshomework.repin;
 
-import org.mtshomework.repin.animals.Animal;
-import org.mtshomework.repin.animals.Turtle;
+import org.mtshomework.repin.animals.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 public abstract class CreateAnimalService {
-    //ArrayList<Class<?>> classList = new ArrayList<>();
-    //List<Method> factoryList;
+    enum ANIMAL {
+        WOLF {
+            public Animal create() {
+                return new Wolf();
+            }
+        },
+        EAGLE {
+            public Animal create() {
+                return new Eagle();
+            }
+        },
+        TURTLE {
+            public Animal create() {
+                return new Turtle();
+            }
+        },
+        ANTELOPE {
+            public Animal create() {
+                return new Antelope();
+            }
+        };
 
-    /*void registerAnimal(Class<?> animalClass) {
-        classList.add(animalClass);
-    }*/
-    protected static Integer DEFAULT_ANIMALS_AMOUNT = 10;
-
-    abstract void registerAnimal(Class<?> animalFactory) throws NoSuchMethodException;
-
-    protected abstract List<Method> getFactoryList();
-
-    /*Animal create(int t) {
-        Method factory = factoryList.get(t);
-        try {
-            return (Animal) factory.invoke(null);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
+        public Animal create() {
+            return null;
         }
-    }*/
+
+        private static final ANIMAL[] vals = values();
+
+        public ANIMAL next() {
+            return vals[(this.ordinal() + 1) % vals.length];
+        }
+    }
+
+    private ANIMAL nextAnimal = ANIMAL.WOLF;
+
+    Animal create() {
+        Animal result = nextAnimal.create();
+        nextAnimal = nextAnimal.next();
+        return result;
+    }
+
+    protected static Integer DEFAULT_ANIMALS_AMOUNT = 10;
 
     protected void printInfo(Animal a) {
         System.out.println("+ " + a.getBreed() + " " + a.getName() + " ("+a.getCharacter()+") по цене " + a.getCost());
     }
 
     public void animals() {
-        Iterator<Method> listIterator = getFactoryList().iterator();
         Integer size = 0;
         while (size < DEFAULT_ANIMALS_AMOUNT) {
-            if (!listIterator.hasNext()) {
-                listIterator = getFactoryList().iterator();
-            }
-            try {
-                this.printInfo((Animal) listIterator.next().invoke(null));
-                size++;
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            } catch (InvocationTargetException e) {
-                throw new RuntimeException(e);
-            }
+            this.printInfo(create());
         }
     }
 }

@@ -40,3 +40,9 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+.gradle/
+gradlew.*
+build.*
+settings.gradle
+gradle/
