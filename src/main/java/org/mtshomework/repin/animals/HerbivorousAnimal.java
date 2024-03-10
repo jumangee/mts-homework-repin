@@ -3,6 +3,9 @@ package org.mtshomework.repin.animals;
 import java.time.LocalDate;
 
 public class HerbivorousAnimal extends AbstractAnimal {
+    public HerbivorousAnimal(String breed, String character, Double cost) {
+        super(breed, character, cost);
+    }
     @Override
     public String getBreed() {
         return "Травоядное " + this.breed;

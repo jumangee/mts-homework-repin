@@ -15,7 +15,11 @@ public abstract class AbstractAnimal implements Animal {
         return Math.round(Math.random() * 10000) + 1;
     }
 
-    protected void birth() {
+    protected AbstractAnimal(String breed, String character, Double cost) {
+        this.breed = breed;
+        this.character = character;
+        this.cost = cost;
+
         this.name = this.breed + "#" + this.randomNameID();
         this.birthDate = LocalDate.ofEpochDay( Math.round(Math.random() * 10000000) + 1 );
     }
