@@ -1,6 +1,8 @@
 package org.mtshomework.repin;
 
 import org.mtshomework.repin.animals.*;
+import org.mtshomework.repin.exceptions.InvalidAnimalBirthDateException;
+import org.mtshomework.repin.exceptions.InvalidAnimalException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -50,11 +52,11 @@ public abstract class CreateAnimalService {
 
     protected static Integer DEFAULT_ANIMALS_AMOUNT = 10;
 
-    protected void printInfo(Animal a) {
+    protected void printInfo(Animal a) throws InvalidAnimalException, InvalidAnimalBirthDateException {
         System.out.println("+ " + a.getBreed() + " " + a.getName() + " ("+a.getCharacter()+") по цене " + a.getCost());
     }
 
-    public void animals() {
+    public void animals() throws InvalidAnimalException, InvalidAnimalBirthDateException {
         Integer size = 0;
         while (size < DEFAULT_ANIMALS_AMOUNT) {
             this.printInfo(create());

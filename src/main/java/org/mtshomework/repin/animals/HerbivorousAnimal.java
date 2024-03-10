@@ -1,5 +1,7 @@
 package org.mtshomework.repin.animals;
 
+import java.time.LocalDate;
+
 public class HerbivorousAnimal extends AbstractAnimal {
     @Override
     public String getBreed() {
@@ -20,4 +22,7 @@ public class HerbivorousAnimal extends AbstractAnimal {
     public String getCharacter() {
         return this.character;
     }
+
+    @Override
+    public LocalDate getBirthDate() {return this.birthDate; }
 }

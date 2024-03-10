@@ -5,6 +5,6 @@ public class Antelope extends HerbivorousAnimal {
         this.breed = "Антилопа";
         this.character = "Лесные";
         this.cost = 1000.00;
-        this.generateName();
+        this.birth();
     }
 }

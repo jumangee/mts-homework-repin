@@ -5,6 +5,6 @@ public class Eagle extends PredatorAnimal {
         this.breed = "Орёл";
         this.character = "Птицы";
         this.cost = 2500.00;
-        this.generateName();
+        this.birth();
     }
 }

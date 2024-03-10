@@ -5,6 +5,6 @@ public class Wolf extends PredatorAnimal {
         this.breed = "Волк";
         this.character = "Лесные";
         this.cost = 1500.00;
-        this.generateName();
+        this.birth();
     }
 }

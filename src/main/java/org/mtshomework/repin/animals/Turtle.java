@@ -5,6 +5,6 @@ public class Turtle extends HerbivorousAnimal{
         this.breed = "Черепаха";
         this.character = "Морские";
         this.cost = 200.00;
-        this.generateName();
+        this.birth();
     }
 }
