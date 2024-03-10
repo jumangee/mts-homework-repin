@@ -24,46 +24,18 @@ class ApplicationTest {
     @Mock
     CreateAnimalServiceImpl svc;
 
-    private static ByteArrayOutputStream outContent;
-    private final static PrintStream originalOut = System.out;
-
-    @BeforeAll
-    public static void setUpStreams() {
-        System.out.println("BeforeAll setUpStreams() method called");
-        outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-    }
-
-    @AfterAll
-    public static void restoreStreams() {
-        System.setOut(originalOut);
-        System.out.println("AfterAll restoreStreams() method called");
-    }
-
     @Test
     @DisplayName("Test for InvalidAnimalException")
-    void main_InvalidAnimalException() {
-        try {
-            doThrow(new InvalidAnimalException("Error occurred")).when(svc).animals(anyInt());
-        } catch (InvalidAnimalException e) {
-            throw new RuntimeException(e);
-        } catch (InvalidAnimalBirthDateException e) {
-            throw new RuntimeException(e);
-        }
+    void main_InvalidAnimalException() throws InvalidAnimalException, InvalidAnimalBirthDateException {
+        doThrow(new InvalidAnimalException("Error occurred")).when(svc).animals(anyInt());
 
         assertThrows(InvalidAnimalException.class, () -> svc.animals(1));
     }
 
     @Test
     @DisplayName("Test for InvalidAnimalBirthDateException")
-    void main_AnimalBirthDateException() {
-        try {
-            doThrow(new InvalidAnimalBirthDateException("Error occurred")).when(svc).animals(anyInt());
-        } catch (InvalidAnimalException e) {
-            throw new RuntimeException(e);
-        } catch (InvalidAnimalBirthDateException e) {
-            throw new RuntimeException(e);
-        }
+    void main_AnimalBirthDateException() throws InvalidAnimalException, InvalidAnimalBirthDateException {
+        doThrow(new InvalidAnimalBirthDateException("Error occurred")).when(svc).animals(anyInt());
 
         assertThrows(InvalidAnimalBirthDateException.class, () -> svc.animals(1));
     }

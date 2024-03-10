@@ -51,7 +51,7 @@ class AnimalSearchServiceImplTest {
     void checkLeapYearAnimal_IncorrectParam() {
         InvalidAnimalException e = assertThrows(InvalidAnimalException.class, () -> svc.checkLeapYearAnimal(null));
 
-        assertEquals("на вход пришло некорректный объект животного " + LocalDate.now(), e.getMessage());
+        assertEquals("на входе animal == null: " + LocalDate.now(), e.getMessage());
     }
 
     @Test

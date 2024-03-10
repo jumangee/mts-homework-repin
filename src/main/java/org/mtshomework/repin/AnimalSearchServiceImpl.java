@@ -11,7 +11,7 @@ public class AnimalSearchServiceImpl implements AnimalSearchService {
     @Override
     public void checkLeapYearAnimal(Animal animal) throws InvalidAnimalException, InvalidAnimalBirthDateException {
         if (animal == null) {
-            throw new InvalidAnimalException("на вход пришло некорректный объект животного " + LocalDate.now());
+            throw new InvalidAnimalException("на входе animal == null: " + LocalDate.now());
         }
         if (animal.getBirthDate() == null) {
             throw new InvalidAnimalBirthDateException("у животного "+animal.getName()+" не указана дата его рождения");
