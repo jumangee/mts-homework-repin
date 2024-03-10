@@ -46,3 +46,7 @@ gradlew.*
 build.*
 settings.gradle
 gradle/
+.idea/encodings.xml
+.idea/gradle.xml
+Test Results - Tests_in_'mts-homework-repin_test'.html
+build.gradle
