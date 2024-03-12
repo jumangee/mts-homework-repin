@@ -25,18 +25,10 @@ class ApplicationTest {
     CreateAnimalServiceImpl svc;
 
     @Test
-    @DisplayName("Test for InvalidAnimalException")
-    void main_InvalidAnimalException() throws InvalidAnimalException, InvalidAnimalBirthDateException {
-        doThrow(new InvalidAnimalException("Error occurred")).when(svc).animals(anyInt());
-
-        assertThrows(InvalidAnimalException.class, () -> svc.animals(1));
-    }
-
-    @Test
     @DisplayName("Test for InvalidAnimalBirthDateException")
-    void main_AnimalBirthDateException() throws InvalidAnimalException, InvalidAnimalBirthDateException {
-        doThrow(new InvalidAnimalBirthDateException("Error occurred")).when(svc).animals(anyInt());
+    void main_AnimalBirthDateException() throws InvalidAnimalBirthDateException {
+        doThrow(new InvalidAnimalBirthDateException("Error occurred")).when(svc).animals();
 
-        assertThrows(InvalidAnimalBirthDateException.class, () -> svc.animals(1));
+        assertThrows(InvalidAnimalException.class, () -> new Application().run(svc));
     }
 }

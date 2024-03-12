@@ -52,11 +52,11 @@ public abstract class CreateAnimalService {
 
     protected static Integer DEFAULT_ANIMALS_AMOUNT = 10;
 
-    protected void printInfo(Animal a) throws InvalidAnimalException, InvalidAnimalBirthDateException {
+    protected void printInfo(Animal a) throws InvalidAnimalBirthDateException {
         System.out.println("+ " + a.getBreed() + " " + a.getName() + " ("+a.getCharacter()+") по цене " + a.getCost());
     }
 
-    public void animals() throws InvalidAnimalException, InvalidAnimalBirthDateException {
+    public void animals() throws InvalidAnimalBirthDateException {
         Integer size = 0;
         while (size < DEFAULT_ANIMALS_AMOUNT) {
             this.printInfo(create());
