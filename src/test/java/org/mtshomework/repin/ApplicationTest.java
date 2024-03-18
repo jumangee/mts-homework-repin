@@ -24,11 +24,16 @@ class ApplicationTest {
     @Mock
     CreateAnimalServiceImpl svc;
 
-    @Test
+    /*@Test
     @DisplayName("Test for InvalidAnimalBirthDateException")
     void main_AnimalBirthDateException() throws InvalidAnimalBirthDateException {
         doThrow(new InvalidAnimalBirthDateException("Error occurred")).when(svc).animals();
 
-        assertThrows(InvalidAnimalException.class, () -> new Application().run(svc));
+        //assertThrows(InvalidAnimalException.class, () -> new Application().run(svc));
+    }*/
+
+    @Test
+    void err() {
+        assertThrows(InvalidAnimalException.class, () -> new Application().run(new CreateAnimalServiceImpl(), new AnimalsRepositoryImpl()));
     }
 }

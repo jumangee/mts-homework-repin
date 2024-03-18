@@ -6,7 +6,7 @@ import org.mtshomework.repin.exceptions.InvalidAnimalException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Iterator;
+import java.util.*;
 
 public abstract class CreateAnimalService {
     enum ANIMAL {
@@ -50,16 +50,18 @@ public abstract class CreateAnimalService {
         return result;
     }
 
-    protected static Integer DEFAULT_ANIMALS_AMOUNT = 10;
+    protected static Integer DEFAULT_ANIMALS_AMOUNT = 100;
 
-    protected void printInfo(Animal a) throws InvalidAnimalBirthDateException {
-        System.out.println("+ " + a.getBreed() + " " + a.getName() + " ("+a.getCharacter()+") по цене " + a.getCost());
-    }
-
-    public void animals() throws InvalidAnimalBirthDateException {
-        Integer size = 0;
+    public Map<String, List<Animal>> animals() throws InvalidAnimalBirthDateException {
+        int size = 0;
+        HashMap<String, List<Animal>> result = new HashMap<String, List<Animal>>();
+        System.out.println("Generating animals: " + DEFAULT_ANIMALS_AMOUNT);
         while (size < DEFAULT_ANIMALS_AMOUNT) {
-            this.printInfo(create());
+            Animal animal = create();
+            List<Animal> list = result.computeIfAbsent(animal.getBreed(), k -> new LinkedList<>());
+            list.add(animal);
+            size++;
         }
+        return result;
     }
 }
