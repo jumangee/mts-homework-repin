@@ -6,32 +6,21 @@ import org.mtshomework.repin.exceptions.InvalidAnimalException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class CreateAnimalServiceImpl extends CreateAnimalService {
 
-    AnimalSearchService search = new AnimalSearchServiceImpl();
-
-    @Override
-    protected void printInfo(Animal a) throws InvalidAnimalBirthDateException {
-        //System.out.println("+ " + a.getBreed() + " " + a.getName() + " ("+a.getCharacter()+") по цене " + a.getCost());
-        super.printInfo(a);
-        search.checkLeapYearAnimal(a);
-    }
-
-    public void animals() throws InvalidAnimalBirthDateException {
-        Integer size = 0;
-        do {
-            this.printInfo(create());
-            size++;
-        } while (size < DEFAULT_ANIMALS_AMOUNT);
-    }
-
-    public void animals(Integer amount) throws InvalidAnimalBirthDateException {
+    public Map<String, List<Animal>> animals(Integer amount) throws InvalidAnimalBirthDateException {
+        HashMap<String, List<Animal>> result = new HashMap<String, List<Animal>>();
         for (int i = 0; i < amount; i++) {
-            this.printInfo(create());
+            Animal animal = create();
+            List<Animal> list = result.get(animal.getBreed());
+            if (list == null) {
+                result.put(animal.getBreed(), new LinkedList<>(List.of(animal)));
+            } else {
+                list.add(animal);
+            }
         }
+        return result;
     }
 }
