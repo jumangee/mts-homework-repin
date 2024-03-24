@@ -22,9 +22,17 @@ public class Application {
 
             System.out.println("findDuplicate => " + animalsRepository.findDuplicate(animals));
 
+            System.out.println("findAverageAge => " + animalsRepository.findAverageAge(animals));
+
+            System.out.println("findOldAndExpensive => " + animalsRepository.findOldAndExpensive(animals, 5));
+
+            System.out.println("findMinConstAnimals => " + animalsRepository.findMinConstAnimals(animals));
+
+
+
         } catch (RuntimeException e) {
             StackTraceElement[] trace = e.getStackTrace();
-            System.out.println("Работа метода завершилась ошибкой:" + e.getMessage());
+            System.out.println("Работа метода завершилась ошибкой " + e.getClass() + ": " + e.getMessage());
         } catch (InvalidAnimalBirthDateException e) {
             System.out.println("Некорректное значение animal->birthdate");
             throw new RuntimeException(e);

@@ -10,5 +10,8 @@ import java.util.Map;
 public interface AnimalsRepository {
     public Map<String, LocalDate> findLeapYearNames(Map<String, List<Animal>> animals);
     public Map<Animal, Integer> findOlderAnimal(Map<String, List<Animal>> animals, int age) throws InvalidAnimalAgeException;
-    public Map<String, Integer> findDuplicate(Map<String, List<Animal>> animals);
+    public Map<String, List<Animal>> findDuplicate(Map<String, List<Animal>> animals);
+    public  int findAverageAge(Map<String, List<Animal>> animals);
+    public List<Animal> findOldAndExpensive(Map<String, List<Animal>> animals, int age);
+    public List<String> findMinConstAnimals(Map<String, List<Animal>> animals);
 }
